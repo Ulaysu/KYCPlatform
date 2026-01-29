@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="BuildingBlocks.Application/BuildingBlocks.Application.csproj" />
+  <Project Path="BuildingBlocks.Domain/BuildingBlocks.Domain.csproj" />
+  <Project Path="BuildingBlocks.Infrastructure/BuildingBlocks.Infrastructure.csproj" />
+  <Project Path="Identity.API/Identity.API.csproj" />
+  <Project Path="Identity.Application/Identity.Application.csproj" />
+  <Project Path="Identity.Domain/Identity.Domain.csproj" />
+  <Project Path="Identity.Infrastructure/Identity.Infrastructure.csproj" />
+  <Project Path="WebApi/WebApi.csproj" />
+</Solution>
