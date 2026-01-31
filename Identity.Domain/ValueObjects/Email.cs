@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using BuildingBlocks.Domain.Exceptions;
+using Identity.Domain.Exceptions;
 
 namespace Identity.Domain.ValueObjects
 {
