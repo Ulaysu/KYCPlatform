@@ -12,7 +12,7 @@ namespace Identity.Domain.ValueObjects
     {
         public string Value { get; private set; }
 
-        public Email( string value) 
+        private Email( string value) 
         { 
             Value = value;
         }
