@@ -4,7 +4,11 @@ using System.Text;
 
 namespace Identity.Domain.Aggregates.UserAggregate
 {
-    internal class UserStatus
+    public enum UserStatus
     {
+        Pending = 1,
+        Active = 2,
+        Suspended = 3,
+        Deactivated = 4
     }
 }
