@@ -5,19 +5,21 @@ using System.Text;
 
 namespace Identity.Domain.Events
 {
-    public sealed class UserRegistered : IDomainEvent
+    public sealed class UserRegisteredDomainEvent : IDomainEvent
     {
         public Guid UserId { get; }
         public string Email { get; }
-        public DateTime OccuredOn { get;}
+        public DateTime OccurredOn { get;}
 
-        public DateTime OccurredOn => throw new NotImplementedException();
 
-        public UserRegistered(Guid userId, string email)
+
+       
+
+        public UserRegisteredDomainEvent(Guid userId, string email)
         {
             UserId = userId;
             Email = email;
-            OccuredOn = DateTime.UtcNow;
+            OccurredOn = DateTime.UtcNow;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Domain.Common;
+using Identity.Domain.Events;
 using Identity.Domain.Exceptions;
 using Identity.Domain.ValueObjects;
 using System;
@@ -24,7 +25,7 @@ namespace Identity.Domain.Aggregates.UserAggregate
             Status = UserStatus.Pending;
             Role = role;
 
-            AddDomainEvent(new UserRegistered(Id, Email.Value));
+            AddDomainEvent(new UserRegisteredDomainEvent(Id, Email.Value));
         }
 
         public static User Register(Email email, FullName fullName, userRole role)
