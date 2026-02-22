@@ -7,7 +7,7 @@ namespace Identity.Domain.Repositories
 {
     public interface IIdentityRepository
     {
-        Task<User?> GeByEmailAsync(string email, CancellationToken cancellationToken);
+        Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken);
         Task AddAsync(User user, CancellationToken cancellationToken);
     }
 }
