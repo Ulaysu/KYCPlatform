@@ -17,19 +17,29 @@ namespace Identity.Application.Users.RegisterUser
 
         private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IEventPublish _eventPublisher;
+        private readonly RegisterUserCommandValidator _validator;
+
+       
 
         public RegisterUserCommandHandler( 
-            IIdentityRepository repository, IUnitOfWork unitOfWork, IEventPublish eventPublisher)
+            IIdentityRepository repository, IUnitOfWork unitOfWork, RegisterUserCommandValidator validator)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
-            _eventPublisher = eventPublisher;
+            _validator = validator;
+            
         }
 
         public async Task<Result<Guid>> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
         {
-            var email = Email.Create(command.Email);
+            var validationError = _validator.Validate(command);
+            if (validationError is not null)
+            {
+                return Result<Guid>.Failure(validationError);
+            }
+
+            var email = Email.Create(command.Email.Trim());
+
 
             // Check if user already exists
             var existingUser = await _repository.GetByEmailAsync(email.Value, cancellationToken);
@@ -39,7 +49,7 @@ namespace Identity.Application.Users.RegisterUser
                     new Error("User.Email.Exists", "User with this Email already exists", ErrorType.Conflict));
             }
 
-            var fullName = FullName.Create(command.FirstName, command.LastName);
+            var fullName = FullName.Create(command.FirstName.Trim(), command.LastName.Trim());
 
             // TODO: Role should come from an explicit registration workflow/command contract.
             var user = User.Register(email, fullName, userRole.EmployerAdmin);
